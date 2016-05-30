@@ -26,4 +26,12 @@
         android:src="@android:drawable/stat_notify_chat"
         android:layout_margin="16dp"/>
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_log_in"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@android:drawable/presence_audio_online"
+        android:layout_margin="16dp"/>
+
 </RelativeLayout>

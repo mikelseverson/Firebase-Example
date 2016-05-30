@@ -12,6 +12,9 @@ import android.view.View;
 import com.example.mikelseverson.learningfirebase.fragment.MyPostsFragment;
 import com.example.mikelseverson.learningfirebase.fragment.MyTopPostsFragment;
 import com.example.mikelseverson.learningfirebase.fragment.RecentPostsFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by mikelseverson on 5/29/16.
@@ -24,11 +27,20 @@ public class MainActivity extends BaseActivity {
     private FragmentPagerAdapter mPagerAdapter;
     private ViewPager mViewPager;
 
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
 
         // Create the adapter that will return a fragment for each section
         mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
@@ -67,6 +79,13 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, NewPostActivity.class));
+            }
+        });
+
+        findViewById(R.id.fab_log_in).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GoogleSignInActivity.class));
             }
         });
     }

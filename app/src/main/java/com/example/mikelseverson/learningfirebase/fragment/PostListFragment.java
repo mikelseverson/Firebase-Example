@@ -154,7 +154,7 @@ public abstract class PostListFragment extends Fragment {
     }
 
     public String getUid() {
-        return "32";
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public abstract Query getQuery(DatabaseReference databaseReference);
