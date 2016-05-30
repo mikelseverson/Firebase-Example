@@ -90,4 +90,40 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Create the adapter that will return a fragment for each section
+        mPagerAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
+            private final Fragment[] mFragments = new Fragment[] {
+                    new RecentPostsFragment(),
+                    new MyPostsFragment(),
+                    new MyTopPostsFragment(),
+            };
+            private final String[] mFragmentNames = new String[] {
+                    "Recent",
+                    "My Posts",
+                    "My Top Posts"
+            };
+            @Override
+            public Fragment getItem(int position) {
+                return mFragments[position];
+            }
+            @Override
+            public int getCount() {
+                return mFragments.length;
+            }
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return mFragmentNames[position];
+            }
+        };
+
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mPagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
+
+    }
+
 }

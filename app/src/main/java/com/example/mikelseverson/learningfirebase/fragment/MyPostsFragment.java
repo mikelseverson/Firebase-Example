@@ -14,8 +14,9 @@ public class MyPostsFragment extends PostListFragment {
 
     @Override
     public Query getQuery(DatabaseReference databaseReference) {
+        String myUserId = getUid();
         // All my posts
         return databaseReference.child("user-posts")
-                .child(getUid());
+                .child(myUserId);
     }
 }
