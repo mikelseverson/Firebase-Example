@@ -96,7 +96,7 @@ public abstract class PostListFragment extends Fragment {
                 viewHolder.bindToPost(model, new View.OnClickListener() {
                     @Override
                     public void onClick(View starView) {
-                        // Neeed to write to both places the post is stored
+                        // Need to write to both places the post is stored
                         DatabaseReference globalPostRef = mDatabase.child("posts").child(postRef.getKey());
                         DatabaseReference userPostRef = mDatabase.child("user-posts").child(model.uid).child(postRef.getKey());
 
@@ -154,6 +154,9 @@ public abstract class PostListFragment extends Fragment {
     }
 
     public String getUid() {
+        if(FirebaseAuth.getInstance().getCurrentUser() == null) {
+            return "null";
+        }
         return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
